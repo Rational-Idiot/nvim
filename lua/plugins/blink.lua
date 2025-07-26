@@ -26,7 +26,33 @@ return {
 			-- C-k: Toggle signature help (if signature.enabled = true)
 			--
 			-- See :h blink-cmp-config-keymap for defining your own keymap
-			keymap = { preset = "super-tab" },
+			keymap = {
+				["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
+				["<C-e>"] = { "hide", "fallback" },
+
+				["<Tab>"] = {
+					function(cmp)
+						if cmp.snippet_active() then
+							return cmp.accept()
+						else
+							return cmp.select_and_accept()
+						end
+					end,
+					"snippet_forward",
+					"fallback",
+				},
+				["<S-Tab>"] = { "snippet_backward", "fallback" },
+
+				-- ["<Up>"] = { "select_prev", "fallback" },
+				-- ["<Down>"] = { "select_next", "fallback" },
+				["<C-p>"] = { "select_prev", "fallback_to_mappings" },
+				["<C-n>"] = { "select_next", "fallback_to_mappings" },
+
+				["<C-b>"] = { "scroll_documentation_up", "fallback" },
+				["<C-f>"] = { "scroll_documentation_down", "fallback" },
+
+				["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
+			},
 
 			appearance = {
 				-- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
@@ -61,11 +87,22 @@ return {
 		},
 		config = function()
 			local dap = require("dap")
+			require("render-markdown").setup({
+				completions = { blink = { enabled = true } },
+			})
 
 			dap.adapters.cppdbg = {
 				id = "cppdbg",
 				type = "executable",
 				command = vim.fn.stdpath("data") .. "/mason/packages/cpptools/extension/debugAdapters/bin/OpenDebugAD7",
+			} -- Rust adapter using codelldb
+			dap.adapters.codelldb = {
+				type = "server",
+				port = "${port}",
+				executable = {
+					command = vim.fn.stdpath("data") .. "/mason/packages/codelldb/extension/adapter/codelldb",
+					args = { "--port", "${port}" },
+				},
 			}
 
 			dap.configurations.cpp = {
@@ -89,7 +126,21 @@ return {
 			}
 
 			dap.configurations.c = dap.configurations.cpp
-			dap.configurations.rust = dap.configurations.cpp -- Optional for Rust
+			-- Rust configurations
+			dap.configurations.rust = {
+				{
+					name = "Launch Rust",
+					type = "codelldb",
+					request = "launch",
+					program = function()
+						return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/target/debug/", "file")
+					end,
+					cwd = "${workspaceFolder}",
+					stopOnEntry = false,
+					args = {},
+					runInTerminal = false,
+				},
+			}
 
 			-- Optional: keymaps
 			vim.keymap.set("n", "<F5>", function()
@@ -122,7 +173,7 @@ return {
 	{
 		"jay-babu/mason-nvim-dap.nvim",
 		opts = {
-			ensure_installed = { "cpptools" },
+			ensure_installed = { "cpptools", "codelldb" },
 			automatic_installation = true,
 		},
 	},

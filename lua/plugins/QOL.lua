@@ -19,15 +19,6 @@ return {
 		},
 	},
 	{
-		"kylechui/nvim-surround",
-		event = "VeryLazy",
-		config = function()
-			require("nvim-surround").setup({
-				-- Configuration here, or leave empty to use defaults
-			})
-		end,
-	},
-	{
 		"zaldih/themery.nvim",
 		lazy = false,
 		config = function()
@@ -110,14 +101,14 @@ return {
 		event = "VeryLazy",
 		---@type Flash.Config
 		opts = {},
-  -- stylua: ignore
-  keys = {
-    { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
-    { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-    { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
-    { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-    { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
-  },
+		-- stylua: ignore
+		keys = {
+			-- { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+			{ "S", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+			{ "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+			{ "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+			{ "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+		},
 	},
 	{
 		"mbbill/undotree",
@@ -135,5 +126,94 @@ return {
 	},
 	{
 		"lewis6991/gitsigns.nvim",
+	},
+	{
+		"kdheepak/lazygit.nvim",
+		lazy = true,
+		cmd = {
+			"LazyGit",
+			"LazyGitConfig",
+			"LazyGitCurrentFile",
+			"LazyGitFilter",
+			"LazyGitFilterCurrentFile",
+		},
+		-- optional for floating window border decoration
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+		-- setting the keybinding for LazyGit with 'keys' is recommended in
+		-- order to load the plugin when the command is run for the first time
+		keys = {
+			{ "<leader>gg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
+		},
+	},
+	{
+		"kylechui/nvim-surround",
+		version = "^3.0.0", -- Use for stability; omit to use `main` branch for the latest features
+		event = "VeryLazy",
+		config = function()
+			require("nvim-surround").setup({
+				-- Configuration here, or leave empty to use defaults
+			})
+		end,
+	},
+	{ "nvim-tree/nvim-web-devicons", opts = {} },
+	{
+		"MeanderingProgrammer/render-markdown.nvim",
+		dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.nvim" }, -- if you use the mini.nvim suite
+		-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
+		-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+		---@module 'render-markdown'
+		---@type render.md.UserConfig
+		opts = {},
+	},
+	{
+		"brenton-leighton/multiple-cursors.nvim",
+		version = "*", -- Use the latest tagged version
+		opts = {}, -- This causes the plugin setup function to be called
+		keys = {
+			{ "<C-j>", "<Cmd>MultipleCursorsAddDown<CR>", mode = { "n", "x" }, desc = "Add cursor and move down" },
+			{ "<C-k>", "<Cmd>MultipleCursorsAddUp<CR>", mode = { "n", "x" }, desc = "Add cursor and move up" },
+
+			{ "<C-Up>", "<Cmd>MultipleCursorsAddUp<CR>", mode = { "n", "i", "x" }, desc = "Add cursor and move up" },
+			{
+				"<C-Down>",
+				"<Cmd>MultipleCursorsAddDown<CR>",
+				mode = { "n", "i", "x" },
+				desc = "Add cursor and move down",
+			},
+
+			{
+				"<C-LeftMouse>",
+				"<Cmd>MultipleCursorsMouseAddDelete<CR>",
+				mode = { "n", "i" },
+				desc = "Add or remove cursor",
+			},
+
+			{
+				"<Leader>m",
+				"<Cmd>MultipleCursorsAddVisualArea<CR>",
+				mode = { "x" },
+				desc = "Add cursors to the lines of the visual area",
+			},
+
+			{ "<Leader>a", "<Cmd>MultipleCursorsAddMatches<CR>", mode = { "n", "x" }, desc = "Add cursors to cword" },
+			{
+				"<Leader>A",
+				"<Cmd>MultipleCursorsAddMatchesV<CR>",
+				mode = { "n", "x" },
+				desc = "Add cursors to cword in previous area",
+			},
+
+			{
+				"<Leader>d",
+				"<Cmd>MultipleCursorsAddJumpNextMatch<CR>",
+				mode = { "n", "x" },
+				desc = "Add cursor and jump to next cword",
+			},
+			{ "<Leader>D", "<Cmd>MultipleCursorsJumpNextMatch<CR>", mode = { "n", "x" }, desc = "Jump to next cword" },
+
+			{ "<Leader>l", "<Cmd>MultipleCursorsLock<CR>", mode = { "n", "x" }, desc = "Lock virtual cursors" },
+		},
 	},
 }

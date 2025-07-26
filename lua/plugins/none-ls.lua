@@ -30,6 +30,15 @@ return {
 				end,
 			}),
 		}
+    local rustfmt = {
+	method = null_ls.methods.FORMATTING,
+	filetypes = { "rust" },
+	generator = null_ls.formatter({
+		command = "/home/aryan/.cargo/bin/rustfmt",
+		args = { "--emit=stdout", "--edition=2021" },
+		to_stdin = true,
+	}),
+}
 
 		local formatting = null_ls.builtins.formatting
 		local completion = null_ls.builtins.completion
@@ -41,9 +50,9 @@ return {
 				formatting.clang_format,
 				formatting.prettier,
 				diagnostics.checkmake,
+        rustfmt,
 				require("none-ls.diagnostics.eslint"),
 				require("none-ls.diagnostics.cpplint"),
-
 				formatting.gofumpt,
 				formatting.markdownlint,
 				formatting.shfmt,
