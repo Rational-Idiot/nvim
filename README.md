@@ -2,6 +2,8 @@
 
 **Dungeon.nvim** is a highly productive yet deeply customizable Neovim configuration built for developers who want speed, power, and flexibility in a distraction-free environment. It turns Neovim into a modern IDE without sacrificing the spirit of Vim.)
 
+![Dungeon.nvim Screenshot](./.assets/swappy-20250727_043752.png)
+
 ## ✨ Features
 
 - **🛠 Productivity-First**: Preconfigured with sensible defaults, efficient keymaps, and essential plugins to boost development speed.
@@ -31,3 +33,5 @@
 
 ```sh
 git clone https://github.com/yourusername/dungeon.nvim ~/.config/nvim
+```
+
