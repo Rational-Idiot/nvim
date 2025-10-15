@@ -8,7 +8,7 @@ using namespace std;
 #define pb push_back
 #define all(x) (x).begin(), (x).end()
 #define endl '\n'
-#define f(i, m) for (int i = 0; i < m; i++)
+#define f(i, n, m) for (int i = n; i < m; i++)
 #define fi(i, a)                                                               \
   for (auto &i : a)                                                            \
     cin >> i;
