@@ -6,6 +6,7 @@ local targets = {
 	["}"] = true,
 	["'"] = true,
 	['"'] = true,
+	[">"] = true,
 }
 
 function M.esacape()

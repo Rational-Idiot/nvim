@@ -26,12 +26,12 @@ return {
 				-- add the config here
 				themes = {
 					"tokyonight-night",
-					"tokyonight-storm",
 					"tokyonight-moon",
 					"gruvbox",
-					"catppuccin-frappe",
-					"catppuccin-macchiato",
 					"catppuccin-mocha",
+					"rose-pine-main",
+					"rose-pine-moon",
+					"nord",
 				},
 				livePreview = true, -- optional: preview themes live when navigating them
 				autoApply = true, -- optional: auto apply when selecting
@@ -64,14 +64,14 @@ return {
 		event = "VeryLazy",
 		---@type Flash.Config
 		opts = {},
-		-- stylua: ignore
-		keys = {
-			-- { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
-			{ "S", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
-			{ "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
-			{ "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-			{ "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
-		},
+    -- stylua: ignore
+    keys = {
+      -- { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+      { "S",     mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
+      { "r",     mode = "o",               function() require("flash").remote() end,            desc = "Remote Flash" },
+      { "R",     mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+      { "<c-s>", mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
+    },
 	},
 	{
 		"mbbill/undotree",
@@ -141,4 +141,37 @@ return {
 		---@type render.md.UserConfig
 		opts = {},
 	},
+	{
+		"hat0uma/csvview.nvim",
+		---@module "csvview"
+		---@type CsvView.Options
+		opts = {
+			parser = { comments = { "#", "//" } },
+			keymaps = {
+				-- Text objects for selecting fields
+				textobject_field_inner = { "if", mode = { "o", "x" } },
+				textobject_field_outer = { "af", mode = { "o", "x" } },
+				-- Excel-like navigation:
+				-- Use <Tab> and <S-Tab> to move horizontally between fields.
+				-- Use <Enter> and <S-Enter> to move vertically between rows and place the cursor at the end of the field.
+				-- Note: In terminals, you may need to enable CSI-u mode to use <S-Tab> and <S-Enter>.
+				jump_next_field_end = { "<Tab>", mode = { "n", "v" } },
+				jump_prev_field_end = { "<S-Tab>", mode = { "n", "v" } },
+				jump_next_row = { "<Enter>", mode = { "n", "v" } },
+				jump_prev_row = { "<S-Enter>", mode = { "n", "v" } },
+			},
+		},
+		cmd = { "CsvViewEnable", "CsvViewDisable", "CsvViewToggle" },
+	},
+	{
+		"lervag/vimtex",
+		lazy = false, -- we don't want to lazy load VimTeX
+		-- tag = "v2.15", -- uncomment to pin to a specific release
+		init = function()
+			-- VimTeX configuration goes here, e.g.
+			vim.g.vimtex_view_method = "zathura"
+		end,
+	},
+	{ "https://github.com/mg979/vim-visual-multi" },
+	{ "https://github.com/pest-parser/pest.vim" },
 }

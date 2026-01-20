@@ -60,6 +60,11 @@ return {
 			},
 			--format on save
 			on_attach = function(client, bufnr)
+				if vim.bo[bufnr].filetype == "haskell" then
+					client.server_capabilities.documentFormattingProvider = false
+					client.server_capabilities.documentRangeFormattingProvider = false
+					return -- no format-on-save for Haskell
+				end
 				if client.name == "null-ls" then
 					vim.api.nvim_create_autocmd("BufWritePre", {
 						group = vim.api.nvim_create_augroup("FormatOnSave", { clear = true }),

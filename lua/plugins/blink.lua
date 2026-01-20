@@ -57,7 +57,7 @@ return {
 			appearance = {
 				-- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
 				-- Adjusts spacing to ensure icons are aligned
-				nerd_font_variant = "mono",
+				nerd_font_variant = "Nerf Font Mono",
 			},
 
 			-- (Default) Only show the documentation popup when manually triggered
@@ -157,7 +157,7 @@ return {
 			end)
 			vim.keymap.set("n", "<Leader>b", function()
 				require("dap").toggle_breakpoint()
-			end)
+			end, { desc = "Toggle Debugger Breakpoints" })
 
 			-- Optional: UI config
 			require("dapui").setup()
