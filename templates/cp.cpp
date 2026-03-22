@@ -5,14 +5,15 @@ using namespace std;
   cin.tie(NULL);                                                               \
   cout.tie(NULL);
 #define int long long
+#define vi vector<int>
 #define pb push_back
 #define all(x) (x).begin(), (x).end()
 #define endl '\n'
 #define f(i, n, m) for (int i = n; i < m; i++)
-#define fi(i, a)                                                               \
+#define fi(a)                                                                  \
   for (auto &i : a)                                                            \
     cin >> i;
-#define fo(i, a)                                                               \
+#define fo(a)                                                                  \
   for (auto &i : a)                                                            \
     cout << i << " ";
 const int MOD = 1e9 + 7;

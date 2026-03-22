@@ -14,6 +14,22 @@ return {
 					["cmp.entry.get_documentation"] = true, -- requires nvim-cmp
 				},
 			},
+			routes = {
+				{
+					filter = {
+						event = "notify",
+						find = "lazy.nvim",
+					},
+					opts = { skip = true },
+				},
+				{
+					filter = {
+						event = "notify",
+						find = "mason",
+					},
+					opts = { skip = true },
+				},
+			},
 			presets = {
 				bottom_search = true,
 				command_palette = true,

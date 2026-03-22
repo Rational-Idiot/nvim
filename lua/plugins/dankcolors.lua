@@ -4,74 +4,23 @@ return {
 		priority = 1000,
 		config = function()
 			require('base16-colorscheme').setup({
-				base00 = '#141318',
-				base01 = '#141318',
-				base02 = '#5c6370',
-				base03 = '#5c6370',
-				base04 = '#abb2bf',
-				base05 = '#ffffff',
-				base06 = '#ffffff',
-				base07 = '#ffffff',
-				base08 = '#e0675f',
-				base09 = '#e0675f',
-				base0A = '#d5ccff',
-				base0B = '#86e089',
-				base0C = '#826db8',
-				base0D = '#d5ccff',
-				base0E = '#716ecc',
-				base0F = '#716ecc',
-			})
 
-			vim.api.nvim_set_hl(0, 'Visual', {
-				bg = '#5c6370',
-				fg = '#ffffff',
-				bold = true
-			})
-			vim.api.nvim_set_hl(0, 'Statusline', {
-				bg = '#d5ccff',
-				fg = '#141318',
-			})
-			vim.api.nvim_set_hl(0, 'LineNr', { fg = '#5c6370' })
-			vim.api.nvim_set_hl(0, 'CursorLineNr', { fg = '#826db8', bold = true })
-
-			vim.api.nvim_set_hl(0, 'Statement', {
-				fg = '#716ecc',
-				bold = true
-			})
-			vim.api.nvim_set_hl(0, 'Keyword', { link = 'Statement' })
-			vim.api.nvim_set_hl(0, 'Repeat', { link = 'Statement' })
-			vim.api.nvim_set_hl(0, 'Conditional', { link = 'Statement' })
-
-			vim.api.nvim_set_hl(0, 'Function', {
-				fg = '#d5ccff',
-				bold = true
-			})
-			vim.api.nvim_set_hl(0, 'Macro', {
-				fg = '#d5ccff',
-				italic = true
-			})
-			vim.api.nvim_set_hl(0, '@function.macro', { link = 'Macro' })
-
-			vim.api.nvim_set_hl(0, 'Type', {
-				fg = '#826db8',
-				bold = true,
-				italic = true
-			})
-			vim.api.nvim_set_hl(0, 'Structure', { link = 'Type' })
-
-			vim.api.nvim_set_hl(0, 'String', {
-				fg = '#86e089',
-				italic = true
-			})
-
-			vim.api.nvim_set_hl(0, 'Operator', { fg = '#abb2bf' })
-			vim.api.nvim_set_hl(0, 'Delimiter', { fg = '#abb2bf' })
-			vim.api.nvim_set_hl(0, '@punctuation.bracket', { link = 'Delimiter' })
-			vim.api.nvim_set_hl(0, '@punctuation.delimiter', { link = 'Delimiter' })
-
-			vim.api.nvim_set_hl(0, 'Comment', {
-				fg = '#5c6370',
-				italic = true
+				base00 = '#141314',
+				base01 = '#1c1b1c',
+				base02 = '#201f20',
+				base03 = '#7f7b85',
+				base0B = '#ffda72',
+				base04 = '#d0cbd8',
+				base05 = '#fbf8ff',
+				base06 = '#fbf8ff',
+				base07 = '#fbf8ff',
+				base08 = '#ff9fb2',
+				base09 = '#ff9fb2',
+				base0A = '#dcdae2',
+				base0C = '#fbf9ff',
+				base0D = '#dcdae2',
+				base0E = '#f9f7ff',
+				base0F = '#f9f7ff',
 			})
 
 			local current_file_path = vim.fn.stdpath("config") .. "/lua/plugins/dankcolors.lua"

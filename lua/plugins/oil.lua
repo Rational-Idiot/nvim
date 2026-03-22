@@ -15,7 +15,7 @@ return {
 		opts = {},
 		-- Optional dependencies
 		-- dependencies = { { "echasnovski/mini.icons", opts = {} } },
-		dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
+		-- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
 		-- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
 		lazy = false,
 		config = function()
@@ -51,7 +51,7 @@ return {
 				-- Send deleted files to the trash instead of permanently deleting them (:help oil-trash)
 				delete_to_trash = true,
 				-- Skip the confirmation popup for simple operations (:help oil.skip_confirm_for_simple_edits)
-				skip_confirm_for_simple_edits = false,
+				skip_confirm_for_simple_edits = true,
 				-- Selecting a new/moved/renamed file or directory will prompt you to save changes first
 				-- (:help prompt_save_on_select_new_entry)
 				prompt_save_on_select_new_entry = true,

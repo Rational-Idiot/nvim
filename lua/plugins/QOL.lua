@@ -19,31 +19,6 @@ return {
 		},
 	},
 	{
-		"zaldih/themery.nvim",
-		lazy = false,
-		config = function()
-			require("themery").setup({
-				-- add the config here
-				themes = {
-					"tokyonight-night",
-					"tokyonight-moon",
-					"gruvbox",
-					"catppuccin-mocha",
-					"rose-pine-main",
-					"rose-pine-moon",
-					"nord",
-				},
-				livePreview = true, -- optional: preview themes live when navigating them
-				autoApply = true, -- optional: auto apply when selecting
-				mappings = {
-					apply = "<CR>", -- Apply theme
-					delete = "d", -- Delete theme from list
-				},
-			})
-			vim.keymap.set("n", "<leader>th", "<cmd>Themery<CR>")
-		end,
-	},
-	{
 		"folke/persistence.nvim",
 		event = "BufReadPre", -- this will only start session saving when an actual file was opened
 		opts = {
@@ -172,6 +147,5 @@ return {
 			vim.g.vimtex_view_method = "zathura"
 		end,
 	},
-	{ "https://github.com/mg979/vim-visual-multi" },
 	{ "https://github.com/pest-parser/pest.vim" },
 }

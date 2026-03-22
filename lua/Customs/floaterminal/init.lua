@@ -56,6 +56,38 @@ end
 -- Create a floating window with default dimensions
 vim.api.nvim_create_user_command("Floaterminal", toggle_terminal, {})
 
+local function run_current_cpp()
+	-- ensure terminal exists
+	if not vim.api.nvim_win_is_valid(state.floating.win) then
+		state.floating = create_floating_window({ buf = state.floating.buf })
+
+		if vim.bo[state.floating.buf].buftype ~= "terminal" then
+			vim.fn.termopen("fish")
+			vim.cmd.startinsert()
+
+			-- wait for terminal job to attach, then rerun
+			vim.defer_fn(function()
+				run_current_cpp()
+			end, 50)
+
+			return
+		end
+	end
+
+	local job_id = vim.b[state.floating.buf].terminal_job_id
+	if not job_id then
+		vim.notify("Terminal job not ready", vim.log.levels.WARN)
+		return
+	end
+
+	local file = vim.fn.expand("#:p")
+	local cmd = "clear; runcp " .. vim.fn.shellescape(file) .. "\n"
+
+	vim.fn.chansend(job_id, cmd)
+	vim.cmd.startinsert()
+end
+
 return {
 	toggle_terminal = toggle_terminal,
+	run_current_cpp = run_current_cpp,
 }
