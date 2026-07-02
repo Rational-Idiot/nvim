@@ -25,6 +25,13 @@ return {
 				{
 					filter = {
 						event = "notify",
+						find = "Format request failed, no matching language servers",
+					},
+					opts = { skip = true },
+				},
+				{
+					filter = {
+						event = "notify",
 						find = "mason",
 					},
 					opts = { skip = true },

@@ -58,7 +58,7 @@ return {
 			appearance = {
 				-- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
 				-- Adjusts spacing to ensure icons are aligned
-				nerd_font_variant = "Nerf Font Mono",
+				nerd_font_variant = "normal",
 			},
 
 			-- (Default) Only show the documentation popup when manually triggered
@@ -76,6 +76,13 @@ return {
 			--
 			-- See the fuzzy documentation for more information
 			fuzzy = { implementation = "prefer_rust_with_warning" },
+			cmdline = {
+				enabled = true,
+				keymap = { preset = "cmdline" },
+				completion = {
+					menu = { auto_show = true },
+				},
+			},
 		},
 		opts_extend = { "sources.default" },
 	},

@@ -1,6 +1,5 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-
 vim.g.loaded_matchparen = 1
 vim.g.loaded_matchit = 1
 vim.g.loaded_netrwPlugin = 1
@@ -146,3 +145,10 @@ vim.keymap.set("n", "<leader>th", function()
 		end
 	end)
 end, { desc = "Switch colorscheme" }) --Package Manager
+
+vim.keymap.set(
+	"n",
+	"<leader>bh",
+	[[<CMD>lua require('close_buffers').delete({ type = 'hidden', force = true })<CR>]],
+	{ desc = "Delete Hidden Buffers" }
+)
