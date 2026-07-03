@@ -1,44 +1,44 @@
 return {
-	{
-		"folke/which-key.nvim",
-		event = "VeryLazy",
-		opts = {
-			-- your configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
-			preset = "helix",
-		},
-		keys = {
-			{
-				"<leader>?",
-				function()
-					require("which-key").show({ global = false })
-				end,
-				desc = "Buffer Local Keymaps (which-key)",
-			},
-		},
-	},
-	{
-		"folke/persistence.nvim",
-		event = "BufReadPre", -- this will only start session saving when an actual file was opened
-		opts = {
-			-- add any custom options here
-		},
-	},
-	{
-		"folke/todo-comments.nvim",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		opts = {
-			-- your configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
-		},
-	},
-	{
-		"folke/flash.nvim",
-		event = "VeryLazy",
-		---@type Flash.Config
-		opts = {},
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+      preset = "helix",
+    },
+    keys = {
+      {
+        "<leader>?",
+        function()
+          require("which-key").show({ global = false })
+        end,
+        desc = "Buffer Local Keymaps (which-key)",
+      },
+    },
+  },
+  {
+    "folke/persistence.nvim",
+    event = "BufReadPre", -- this will only start session saving when an actual file was opened
+    opts = {
+      -- add any custom options here
+    },
+  },
+  {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    },
+  },
+  {
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    ---@type Flash.Config
+    opts = {},
     -- stylua: ignore
     keys = {
       -- { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
@@ -47,96 +47,103 @@ return {
       { "R",     mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
       { "<c-s>", mode = { "c" },           function() require("flash").toggle() end,            desc = "Toggle Flash Search" },
     },
-	},
-	{
-		"mbbill/undotree",
-		cmd = "UndotreeToggle",
-		keys = {
-			{ "<leader>u", "<cmd>UndotreeToggle<CR>", desc = "Toggle Undotree" },
-		},
-	},
-	{
-		"07CalC/cook.nvim",
-		config = function()
-			require("cook").setup({
-				runners = {
-					py = "python3 %s",
-					c = "gcc %s -o %s && %s",
-					cpp = "g++ %s -o %s && %s",
-					rs = "cargo run",
-					js = "bun %s",
-					ts = "bun %s",
-					go = "go run %s",
-					java = "java --enable-preview %s",
-				},
-			})
-		end,
-		cmd = "Cook",
-	},
-	{
-		"lewis6991/gitsigns.nvim",
-	},
-	{
-		"kdheepak/lazygit.nvim",
-		lazy = true,
-		cmd = {
-			"LazyGit",
-			"LazyGitConfig",
-			"LazyGitCurrentFile",
-			"LazyGitFilter",
-			"LazyGitFilterCurrentFile",
-		},
-		-- optional for floating window border decoration
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-		},
-		-- setting the keybinding for LazyGit with 'keys' is recommended in
-		-- order to load the plugin when the command is run for the first time
-		keys = {
-			{ "<leader>gg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
-		},
-	},
-	{
-		"kylechui/nvim-surround",
-		version = "^3.0.0", -- Use for stability; omit to use `main` branch for the latest features
-		event = "VeryLazy",
-		config = function()
-			require("nvim-surround").setup({
-				-- Configuration here, or leave empty to use defaults
-			})
-		end,
-	},
-	{
-		"hat0uma/csvview.nvim",
-		---@module "csvview"
-		---@type CsvView.Options
-		opts = {
-			parser = { comments = { "#", "//" } },
-			keymaps = {
-				-- Text objects for selecting fields
-				textobject_field_inner = { "if", mode = { "o", "x" } },
-				textobject_field_outer = { "af", mode = { "o", "x" } },
-				-- Excel-like navigation:
-				-- Use <Tab> and <S-Tab> to move horizontally between fields.
-				-- Use <Enter> and <S-Enter> to move vertically between rows and place the cursor at the end of the field.
-				-- Note: In terminals, you may need to enable CSI-u mode to use <S-Tab> and <S-Enter>.
-				jump_next_field_end = { "<Tab>", mode = { "n", "v" } },
-				jump_prev_field_end = { "<S-Tab>", mode = { "n", "v" } },
-				jump_next_row = { "<Enter>", mode = { "n", "v" } },
-				jump_prev_row = { "<S-Enter>", mode = { "n", "v" } },
-			},
-		},
-		cmd = { "CsvViewEnable", "CsvViewDisable", "CsvViewToggle" },
-	},
-	{
-		"lervag/vimtex",
-		lazy = false, -- we don't want to lazy load VimTeX
-		-- tag = "v2.15", -- uncomment to pin to a specific release
-		init = function()
-			-- VimTeX configuration goes here, e.g.
-			vim.g.vimtex_view_method = "zathura"
-		end,
-	},
-	{ "https://github.com/pest-parser/pest.vim" },
-	{ "kazhala/close-buffers.nvim" },
+  },
+  {
+    "mbbill/undotree",
+    cmd = "UndotreeToggle",
+    keys = {
+      { "<leader>u", "<cmd>UndotreeToggle<CR>", desc = "Toggle Undotree" },
+    },
+  },
+  {
+    "07CalC/cook.nvim",
+    config = function()
+      require("cook").setup({
+        runners = {
+          py = "python3 %s",
+          c = "gcc %s -o %s && %s",
+          cpp = "g++ %s -o %s && %s",
+          rs = "cargo run",
+          js = "bun %s",
+          ts = "bun %s",
+          go = "go run %s",
+          java = "java --enable-preview %s",
+        },
+      })
+    end,
+    cmd = "Cook",
+  },
+  {
+    "lewis6991/gitsigns.nvim",
+  },
+  {
+    "kdheepak/lazygit.nvim",
+    lazy = true,
+    cmd = {
+      "LazyGit",
+      "LazyGitConfig",
+      "LazyGitCurrentFile",
+      "LazyGitFilter",
+      "LazyGitFilterCurrentFile",
+    },
+    -- optional for floating window border decoration
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    -- setting the keybinding for LazyGit with 'keys' is recommended in
+    -- order to load the plugin when the command is run for the first time
+    keys = {
+      { "<leader>gg", "<cmd>LazyGit<cr>", desc = "LazyGit" },
+    },
+  },
+  {
+    "kylechui/nvim-surround",
+    version = "^3.0.0", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup({
+        -- Configuration here, or leave empty to use defaults
+      })
+    end,
+  },
+  {
+    "hat0uma/csvview.nvim",
+    ---@module "csvview"
+    ---@type CsvView.Options
+    opts = {
+      parser = { comments = { "#", "//" } },
+      keymaps = {
+        -- Text objects for selecting fields
+        textobject_field_inner = { "if", mode = { "o", "x" } },
+        textobject_field_outer = { "af", mode = { "o", "x" } },
+        -- Excel-like navigation:
+        -- Use <Tab> and <S-Tab> to move horizontally between fields.
+        -- Use <Enter> and <S-Enter> to move vertically between rows and place the cursor at the end of the field.
+        -- Note: In terminals, you may need to enable CSI-u mode to use <S-Tab> and <S-Enter>.
+        jump_next_field_end = { "<Tab>", mode = { "n", "v" } },
+        jump_prev_field_end = { "<S-Tab>", mode = { "n", "v" } },
+        jump_next_row = { "<Enter>", mode = { "n", "v" } },
+        jump_prev_row = { "<S-Enter>", mode = { "n", "v" } },
+      },
+    },
+    cmd = { "CsvViewEnable", "CsvViewDisable", "CsvViewToggle" },
+  },
+  {
+    "lervag/vimtex",
+    lazy = false, -- we don't want to lazy load VimTeX
+    -- tag = "v2.15", -- uncomment to pin to a specific release
+    init = function()
+      -- VimTeX configuration goes here, e.g.
+      vim.g.vimtex_view_method = "zathura"
+    end,
+  },
+  { "https://github.com/pest-parser/pest.vim" },
+  { "kazhala/close-buffers.nvim" },
+  {
+    "L3MON4D3/LuaSnip",
+    -- follow latest release.
+    version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+    -- install jsregexp (optional!).
+    build = "make install_jsregexp",
+  },
 }
