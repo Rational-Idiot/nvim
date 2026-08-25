@@ -7,6 +7,7 @@ function _G.get_oil_winbar()
 	else
 	end
 end
+
 return {
 	{
 		"stevearc/oil.nvim",
